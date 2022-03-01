@@ -10,17 +10,18 @@ public class S300 {
     public  static int lengthOfLIS(int[] nums) {
         int length = nums.length;
         int[] dp = new int[length];
-        for (int i = 0; i < length; i++) {
-            if(i==0){
-                dp[0] = 1;
-            }else if(nums[i]>nums[i-1]){
-                dp[i] =  dp[i-1]+1;
-            }else{
-                dp[i] = dp[i-1];
+        Arrays.fill(dp,1);
+        int max=1;
+        for (int i = 1; i < length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i]>nums[j]) {
+                    dp[i] = Math.max(dp[j] + 1, dp[i]);
+                }
             }
+            max = Math.max(dp[i], max);
         }
         System.err.println(Arrays.toString(dp));
-        return dp[length-1];
+        return max;
     }
 
     public static void main(String[] args) {
