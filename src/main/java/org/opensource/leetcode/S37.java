@@ -50,7 +50,7 @@ public class S37 {
                 }
                 if (nextRow==9) {
                     printSudu(board);
-                    return;
+                    break;
                 }
                 backTrack(nextRow, nextCol, board);
                 board[row][col] = '.';
@@ -65,6 +65,7 @@ public class S37 {
             System.err.println(Arrays.toString(board[i]));
 
         }
+        System.err.println();
     }
 
     public static boolean isValid(char val,int row,int col,char[][] board){
